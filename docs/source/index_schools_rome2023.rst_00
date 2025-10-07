@@ -1,0 +1,490 @@
+A general description of the goal(s) of the school can be found on the
+`Yambo main
+website <https://www.yambo-code.eu/2023/02/18/yambo-school-2023/>`__
+
+.. _use_cineca_computational_resources:
+
+Use CINECA computational resources
+----------------------------------
+
+Yambo tutorials will be run on the MARCONI100 (M100) accelerated
+cluster. You can find info about M100
+`here <https://wiki.u-gov.it/confluence/display/SCAIUS/UG3.2%3A+MARCONI100+UserGuide#UG3.2:MARCONI100UserGuide>`__.
+In order to access computational resources provided by CINECA you need
+your personal username and password that were sent you by the
+organizers.
+
+.. _connect_to_the_cluster_using_ssh:
+
+Connect to the cluster using ssh
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can access M100 via ``ssh`` protocol in different ways.
+
+**- Connect using username and password**
+
+Use the following command replacing your username:
+
+``$ ssh username@login.m100.cineca.it``
+
+However, in this way you have to type your password each time you want
+to connect.
+
+**- Connect using ssh key**
+
+You can setup a ssh key pair to avoid typing the password each time you
+want to connect to M100. To do so, go to your ``.ssh`` directory
+(usually located in the ``home`` directory):
+
+``$ cd $HOME/.ssh``
+
+If you don't have this directory, you can create it with
+``mkdir $HOME/.ssh``.
+
+Once you are in the ``.ssh`` directory, run the ``ssh-keygen`` command
+to generate a private/public key pair:
+
+| ``$ ssh-keygen``
+| ``Generating public/private rsa key pair.``
+| ``Enter file in which to save the key: m100_id_rsa``
+| ``Enter passphrase (empty for no passphrase): ``
+| ``Enter same passphrase again: ``
+| ``Your identification has been saved in <your_.ssh_dir>/m100_id_rsa``
+| ``Your public key has been saved in <your_.ssh_dir>/m100_id_rsa.pub``
+| ``The key fingerprint is:``
+| ``<...>``
+| ``The key's randomart image is:``
+| ``<...>``
+
+Now you need to copy the **public** key to M100. You can do that with
+the following command (for this step you need to type your password):
+
+``$ ssh-copy-id -i <your_.ssh_dir>/m100_id_rsa.pub ``\ \ ``@login.m100.cineca.it``
+
+Once the public key has been copied, you can connect to M100 without
+having to type the password using the ``-i`` option:
+
+``$ ssh -i <your_.ssh_dir>/m100_id_rsa username@login.m100.cineca.it``
+
+To simplify even more, you can paste the following lines in a file named
+``config`` located inside the ``.ssh`` directory adjusting username and
+path:
+
+| ``Host m100 ``
+| `` HostName login.m100.cineca.it``
+| `` User username``
+| `` IdentityFile <your_.ssh_dir>/m100_id_rsa``
+
+With the ``config`` file setup you can connect simply with
+
+``$ ssh m100``
+
+.. _general_instructions_to_run_tutorials:
+
+General instructions to run tutorials
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before proceeding, it is useful to know the different workspaces you
+have available on M100, which can be accessed using environment
+variables. The main ones are:
+
+- ``$HOME``: it's the ``home`` directory associated to your username;
+- ``$WORK``: it's the ``work`` directory associated to the account where
+  the computational resources dedicated to this school are allocated;
+- ``$CINECA_SCRATCH``: it's the ``scratch`` directory associated to your
+  username.
+
+You can find more details about storage and FileSystems
+`here <https://wiki.u-gov.it/confluence/display/SCAIUS/UG2.5%3A+Data+storage+and+FileSystems>`__.
+
+Please don't forget to **run all tutorials in your scratch directory**:
+
+| ``$ echo $CINECA_SCRATCH``
+| ``/m100_scratch/userexternal/username``
+| ``$ cd $CINECA_SCRATCH``
+
+Computational resources on M100 are managed by the job scheduling system
+`Slurm <https://slurm.schedmd.com/overview.html>`__. Most part of Yambo
+tutorials during this school can be run in serial, except some that need
+to be executed on multiple processors. Generally, Slurm batch jobs are
+submitted using a script, but the tutorials here are better understood
+if run interactively. The two procedures that we will use to submit
+interactive and non interactive jobs are explained below.
+
+**- Run a job using a batch script**
+
+This procedure is suggested for the tutorials and examples that need to
+be run in parallel. In these cases you need to submit the job using a
+batch script ``job.sh``. Please note that the instructions in the batch
+script must be compatible with the specific M100
+`architecture <https://wiki.u-gov.it/confluence/display/SCAIUS/UG3.2%3A+MARCONI100+UserGuide#UG3.2:MARCONI100UserGuide-SystemArchitecture>`__
+and
+`accounting <https://wiki.u-gov.it/confluence/display/SCAIUS/UG3.2%3A+MARCONI100+UserGuide#UG3.2:MARCONI100UserGuide-Accounting>`__
+systems. The complete list of Slurm options can be found
+`here <https://slurm.schedmd.com/sbatch.html>`__. However you will find
+**ready-to-use** batch scripts in locations specified during the
+tutorials.
+
+To submit the job, use the ``sbatch`` command:
+
+| ``$ sbatch job.sh``
+| ``Submitted batch job ``\ 
+
+To check the job status, use the ``squeue`` command:
+
+| ``$ squeue -u ``\ 
+| ``             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)``
+| ``             <...>  m100_...      JOB username  R       0:01    ``\ \ `` <...>``
+
+If you need to cancel your job, do:
+
+``$ scancel ``\ \ `` ``
+
+**- Open an interactive session**
+
+This procedure is suggested for most of the tutorials, since the
+majority of these is meant to be run in serial (relatively to MPI
+parallelization) from the command line. Use the command below to open an
+interactive session of 1 hour (complete documentation
+`here <https://slurm.schedmd.com/salloc.html>`__):
+
+| ``$ salloc -A tra23_Yambo -p m100_sys_test -q qos_test --reservation=s_tra_yambo --nodes=1 --ntasks-per-node=1 --cpus-per-task=4 -t 01:00:00``
+| ``salloc: Granted job allocation 10164647``
+| ``salloc: Waiting for resource configuration``
+| ``salloc: Nodes r256n01 are ready for job``
+
+We ask for 4 cpus-per-task because we can exploit OpenMP parallelization
+with the available resources.
+
+With ``squeue`` you can see that there is now a job running:
+
+| ``$ squeue -u username``
+| ``             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)``
+| ``          10164647 m100_usr_ interact username  R       0:02      1 r256n01``
+
+To run the tutorial, ``ssh`` into the node specified by the job
+allocation and ``cd`` to your scratch directory:
+
+| ``username@``\ **``login02``**\ ``$ ssh r256n01``
+| ``...``
+| ``username@``\ **``r256n01``**\ ``$ cd $CINECA_SCRATCH``
+
+Then, you need to manually load ``yambo`` as in the batch script above.
+Please note that the serial version of the code is in a different
+directory and does not need ``spectrum_mpi``:
+
+| ``$ module purge``
+| ``$ module load hpc-sdk/2022--binary spectrum_mpi/10.4.0--binary``
+| ``$ export PATH=/m100_work/tra23_Yambo/softwares/YAMBO/5.2-cpu/bin:$PATH``
+
+Finally, set the ``OMP_NUM_THREADS`` environment variable to 4 (as in
+the ``--cpus-per-task`` option):
+
+``$ export OMP_NUM_THREADS=4``
+
+To close the interactive session when you have finished, log out of the
+compute node with the ``exit`` command, and then cancel the job:
+
+| ``$ exit``
+| ``$ scancel ``\ 
+
+**- Plot results with gnuplot**
+
+During the tutorials you will often need to plot the results of the
+calculations. In order to do so on M100, **open a new terminal window**
+and connect to M100 enabling X11 forwarding with the ``-X`` option:
+
+``$ ssh -X m100``
+
+Please note that ``gnuplot`` can be used in this way only from the login
+nodes:
+
+| ``username@``\ **``login01``**\ ``$ cd ``\ 
+| ``username@``\ **``login01``**\ ``$ gnuplot``
+| ``...``
+| ``Terminal type is now '...'``
+| ``gnuplot> plot <...>``
+
+**- Set up yambopy**
+
+In order to run yambopy on m100, you must first setup the conda
+environment (to be done only once):
+
+| ``$ cd``
+| ``$ module load anaconda/2020.11``
+| ``$ conda init bash``
+| ``$ source .bashrc``
+
+After this, every time you want to use yambopy you need to load its
+module and environment:
+
+| ``$ module load anaconda/2020.11``
+| ``$ conda activate /m100_work/tra23_Yambo/softwares/YAMBO/env_yambopy``
+
+Tutorials
+---------
+
+Quick recap. Before every tutorial, if you run on m100, do the following
+steps
+
+| ``ssh m100``
+| ``cd $CINECA_SCRATCH``
+| ``mkdir YAMBO_TUTORIALS ``\ **``(Only if you didn't before)``**
+| ``cd YAMBO_TUTORIALS``
+
+At this point you can download the needed files for the tutorial. After
+you can open the interactive session and login into the node
+
+| ``salloc -A tra23_Yambo -p m100_sys_test -q qos_test --reservation=s_tra_yambo --nodes=1 --ntasks-per-node=1 --cpus-per-task=4 -t 04:00:00``
+| ``ssh ``\ **``PUT HERE THE ASSIGNED NODE NAME AFTER salloc COMMAND``**
+| ``module purge``
+| ``module load hpc-sdk/2022--binary spectrum_mpi/10.4.0--binary``
+| ``export PATH=/m100_work/tra23_Yambo/softwares/YAMBO/5.2-cpu/bin:$PATH``
+| ``cd $CINECA_SCRATCH``
+| ``cd YAMBO_TUTORIALS ``
+
+.. _day_1___monday_22_may:
+
+DAY 1 - Monday, 22 May
+~~~~~~~~~~~~~~~~~~~~~~
+
+**16:15 - 18:30 From the DFT ground state to the complete setup of a
+Many Body calculation using Yambo**
+
+To get the tutorial files needed for the following tutorials, follow
+these steps:
+
+| ``$ wget ``\ ```https://media.yambo-code.eu/educational/tutorials/files/hBN.tar.gz`` <https://media.yambo-code.eu/educational/tutorials/files/hBN.tar.gz>`__
+| ``$ wget ``\ ```https://media.yambo-code.eu/educational/tutorials/files/hBN-2D.tar.gz`` <https://media.yambo-code.eu/educational/tutorials/files/hBN-2D.tar.gz>`__
+| ``$ ls``
+| ``hBN-2D.tar.gz  hBN.tar.gz``
+| ``$ tar -xvf hBN-2D.tar.gz``
+| ``$ tar -xvf hBN.tar.gz``
+| ``$ ls``
+| **``hBN-2D``**\ `` ``\ **``hBN``**\ `` hBN-2D.tar.gz  hBN.tar.gz``
+
+Now that you have all the files, you may open the interactive job
+session with ``salloc`` as explained above and proceed with the
+tutorials.
+
+- `First steps: Initialization and
+  more <First_steps:_walk_through_from_DFT(standalone)>`__
+- `Next steps: RPA
+  calculations <Next_steps:_RPA_calculations_(standalone)>`__
+
+At this point, you may learn about the python pre-postprocessing
+capabilities offered by yambopy, our python interface to yambo and QE.
+First of all, let's create a dedicated directory, download and extract
+the related files.
+
+| ``$ cd $CINECA_SCRATCH``
+| ``$ mkdir YAMBOPY_TUTORIALS``
+| ``$ cd YAMBOPY_TUTORIALS``
+| ``$ wget ``\ ```https://media.yambo-code.eu/educational/tutorials/files/databases_yambopy.tar`` <https://media.yambo-code.eu/educational/tutorials/files/databases_yambopy.tar>`__
+| ``$ tar -xvf databases_yambopy.tar``
+| ``$ cd databases_yambopy``
+
+Then, follow **the first three sections** of this link, which are
+related to initialization and linear response.
+
+- `Reading databases with yambopy <Yambopy_tutorial:_Yambo_databases>`__
+
+.. _day_2___tuesday_23_may:
+
+DAY 2 - Tuesday, 23 May
+~~~~~~~~~~~~~~~~~~~~~~~
+
+**14:00 - 16:30 A tour through GW simulation in a complex material (from
+the blackboard to numerical computation: convergence, algorithms,
+parallel usage)**
+
+To get all the tutorial files needed for the following tutorials, follow
+these steps:
+
+| ``wget ``\ ```https://media.yambo-code.eu/educational/tutorials/files/hBN.tar.gz`` <https://media.yambo-code.eu/educational/tutorials/files/hBN.tar.gz>`__
+| ``wget ``\ ```https://media.yambo-code.eu/educational/tutorials/files/MoS2_2Dquasiparticle_tutorial.tar.gz`` <https://media.yambo-code.eu/educational/tutorials/files/MoS2_2Dquasiparticle_tutorial.tar.gz>`__
+| ``tar -xvf hBN.tar.gz``
+| ``tar -xvf MoS2_2Dquasiparticle_tutorial.tar.gz``
+| ``cd hBN``
+
+Now you can start the first tutorial:
+
+-  `GW computations on practice: how to obtain the quasi-particle band
+  structure of a bulk material <GW_tutorial_Rome_2023>`__
+
+If you have gone through the first tutorial, pass now to the second one:
+
+| ``cd $CINECA_SCRATCH``
+| ``cd YAMBO_TUTORIALS``
+| ``cd MoS2_HPC_tutorial``
+
+-  `Quasi-particles of a 2D system <Quasi-particles_of_a_2D_system>`__
+
+To conclude, you can learn an other method to plot the band structure in
+Yambo
+
+-  `Yambopy tutorial: band
+  structures <Yambopy_tutorial:_band_structures>`__
+
+.. _day_3___wednesday_24_may:
+
+DAY 3 - Wednesday, 24 May
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**14:00 - 16:30 Bethe-Salpeter equation (BSE)** Fulvio Paleari
+(CNR-Nano, Italy), Davide Sangalli (CNR-ISM, Italy)
+
+To get the tutorial files needed for the following tutorials, follow
+these steps:
+
+| ``$ wget ``\ ```https://media.yambo-code.eu/educational/tutorials/files/hBN.tar.gz`` <https://media.yambo-code.eu/educational/tutorials/files/hBN.tar.gz>`__\ `` # NOTE: YOU SHOULD ALREADY HAVE THIS FROM DAY 1``
+| ``$ wget ``\ ```https://media.yambo-code.eu/educational/tutorials/files/hBN-convergence-kpoints.tar.gz`` <https://media.yambo-code.eu/educational/tutorials/files/hBN-convergence-kpoints.tar.gz>`__\ `` ``
+| ``$ tar -xvf hBN-convergence-kpoints.tar.gz``
+| ``$ tar -xvf hBN.tar.gz``
+
+Now, you may open the interactive job session with ``salloc`` and
+proceed with the following tutorials.
+
+- `Perform a BSE calculation from beginning to
+  end <Calculating_optical_spectra_including_excitonic_effects:_a_step-by-step_guide>`__
+- `Analyse your results (exciton wavefunctions in real and reciprocal
+  space, etc.) <How_to_analyse_excitons_-_ICTP_2022_school>`__
+- `Solve the BSE eigenvalue problem with different numerical
+  methods <BSE_solvers_overview>`__
+- `Choose the input parameters for a meaningful converged
+  calculation <How_to_choose_the_input_parameters>`__
+
+Now, go into the yambopy tutorial directory to learn about python
+analysis tools for the BSE:
+
+| ``$ cd $CINECA_SCRATCH``
+| ``$ cd YAMBOPY_TUTORIALS/databases_yambopy``
+
+- `Visualization of excitonic properties with
+  yambopy <Yambopy_tutorial:_Yambo_databases#Exciton_intro_1:_read_and_sort_data>`__
+
+**17:00 - 18:30 Bethe-Salpeter equation in real time (TD-HSEX)** Fulvio
+Paleari (CNR-Nano, Italy), Davide Sangalli (CNR-ISM, Italy)
+
+The files needed for the following tutorials can be downloaded following
+these steps:
+
+| ``$ wget ``\ ```https://media.yambo-code.eu/educational/tutorials/files/hBN-2D-RT.tar.gz`` <https://media.yambo-code.eu/educational/tutorials/files/hBN-2D-RT.tar.gz>`__
+| ``$ tar -xvf hBN-2D-RT.tar.gz``
+
+- `Read the introductive section to real-time propagation for the
+  one-body density
+  matrix <Introduction_to_Real_Time_propagation_in_Yambo#Time_Dependent_Equation_for_the_Reduced_One--Body_Density--Matrix>`__
+  (the part about time-dependent Schrödinger equation will be covered on
+  DAY 4 and you can skip it for now)
+- `Perform the setup for a real-time
+  calculation <Prerequisites_for_Real_Time_propagation_with_Yambo>`__
+- `Calculate the linear response in real
+  time <Linear_response_from_real_time_simulations_(density_matrix_only)>`__
+- `Calculate the BSE in real
+  time <Real_time_Bethe-Salpeter_Equation_(density_matrix_only)>`__
+
+.. _day_4___thursday_may_25:
+
+DAY 4 - Thursday, May 25
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+**14:00 - 16:30 Real-time approach with the time dependent berry phase**
+Myrta Gruning (Queen's University Belfast), Davide Sangalli (CNR-ISM,
+Italy)
+
+For the tutorials we will use first the ``hBN-2D-RT`` folder (k-sampling
+10x10x1) and then the ``hBN-2D`` folder (k-sampling 6x6x1) You may
+already have them in the ``YAMBO_TUTORIALS`` folder
+
+| ``$ ls``
+| **``hBN-2D``**\ `` ``\ **``hBN-2D-RT``**\ `` hBN-2D.tar.gz  hBN-2D-RT.tar.gz``
+
+If you need to downoload again the tutorial files, follow these steps:
+
+| ``$ wget ``\ ```https://media.yambo-code.eu/educational/tutorials/files/hBN-2D.tar.gz`` <https://media.yambo-code.eu/educational/tutorials/files/hBN-2D.tar.gz>`__
+| ``$ wget ``\ ```https://media.yambo-code.eu/educational/tutorials/files/hBN-2D-RT.tar.gz`` <https://media.yambo-code.eu/educational/tutorials/files/hBN-2D-RT.tar.gz>`__
+| ``$ tar -xvf hBN-2D.tar.gz``
+| ``$ tar -xvf hBN-2D-RT.tar.gz``
+
+- `Linear response from Bloch-states
+  dynamics <Linear_response_from_Bloch-states_dynamics>`__
+- `Second-harmonic generation of
+  2D-hBN <Second-harmonic_generation_of_2D-hBN>`__
+
+- `Real time approach to non-linear
+  response <Real_time_approach_to_non-linear_response>`__ (additional
+  tutorial)
+- `Correlation effects in the non-linear
+  response <Correlation_effects_in_the_non-linear_response>`__
+  (additional tutorial)
+
+.. _day_5___friday_26_may:
+
+DAY 5 - Friday, 26 May
+~~~~~~~~~~~~~~~~~~~~~~
+
+Lectures
+--------
+
+.. _day_1___monday_22_may_1:
+
+DAY 1 - Monday, 22 May
+~~~~~~~~~~~~~~~~~~~~~~
+
+- D. Varsano, `Description and goal of the
+  school <https://media.yambo-code.eu/educational/Schools/ROME2023/scuola_intro.pdf>`__.
+- G. Stefanucci, `The Many-Body Problem: Key concepts of the Many-Body
+  Perturbation
+  Theory <https://media.yambo-code.eu/educational/Schools/ROME2023/Stefanucci.pdf>`__
+- M. Marsili, `Beyond the independent particle scheme: The linear
+  response
+  theory <https://media.yambo-code.eu/educational/Schools/ROME2023/marghe_linear_response.pdf>`__
+
+.. _day_2___tuesday_23_may_1:
+
+DAY 2 - Tuesday, 23 May
+~~~~~~~~~~~~~~~~~~~~~~~
+
+- E. Perfetto, `An overview on non-equilibrium Green
+  Functions <https://media.yambo-code.eu/educational/Schools/ROME2023/Talk_Perfetto.pdf>`__
+- R. Frisenda, `ARPES spectroscopy, an experimental
+  overview <https://media.yambo-code.eu/educational/Schools/ROME2023/FRISENDA%20-%20ARPES%20spectroscopy,%20an%20experimental%20overview.pdf>`__
+- A. Marini, `The Quasi Particle concept and the GW
+  method <https://media.yambo-code.eu/educational/Schools/ROME2023/GW_marini.pdf>`__
+- A. Guandalini, `The GW method: approximations and
+  algorithms <https://media.yambo-code.eu/educational/Schools/ROME2023/alberto_guandalini.pdf>`__
+- D.A. Leon, C. Cardoso, `Frequency dependence in GW: origin, modelling
+  and practical
+  implementations <https://media.yambo-code.eu/educational/Schools/ROME2023/Cardoso_YamboSchool2023_Rome.pdf>`__
+
+.. _day_3___wednesday_24_may_1:
+
+DAY 3 - Wednesday, 24 May
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- A. Molina-Sánchez, `Modelling excitons: from 2D materials to Pump and
+  Probe
+  experiments <https://media.yambo-code.eu/educational/Schools/ROME2023/yambo-talk-alejandro.pdf>`__
+- M. Palummo, `The Bethe-Salpeter equation: derivations and main
+  physical
+  concepts <https://media.yambo-code.eu/educational/Schools/ROME2023/Palummo_YSCHOOL2023.pdf>`__
+- F. Paleari, `Real time approach to the Bethe-Salpeter
+  equation <https://media.yambo-code.eu/educational/Schools/ROME2023/Yambo2023_FulvioPaleari.pdf>`__
+- D. Sangalli, `TD-HSEX and real-time
+  dynamics <https://www.yambo-code.eu/wiki/index.php/File:RealTime_Propagation_Lecture.pdf>`__
+
+.. _day_4___thursday_25_may:
+
+DAY 4 - Thursday, 25 May
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- S. Mor, `Time resolved spectroscopy: an experimental
+  overview <https://media.yambo-code.eu/educational/Schools/ROME2023/Yamboschool2023_mor.pdf>`__
+- M. Grüning, `Nonlinear optics within Many-Body Perturbation
+  Theory <https://media.yambo-code.eu/educational/Schools/ROME2023/myrta_Nonlinear_Yschool.pdf>`__
+- N. Tancogne-Dejean, `Theory and simulation of High Harmonics
+  Generation <https://media.yambo-code.eu/educational/Schools/ROME2023/Yamboschool2023_NicolasTancogne-Dejean.pdf>`__
+- Y. Pavlyukh, `Coherent electron-phonon dynamics within a time-linear
+  GKBA
+  scheme <https://media.yambo-code.eu/educational/Schools/ROME2023/yaroslav_Coherent_eph_dynamicsMS.pdf>`__
