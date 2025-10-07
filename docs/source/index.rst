@@ -1,7 +1,8 @@
 .. toctree::
    :hidden:
    :caption: Schools
-..  index_schools_modena2025.rst
+
+   index_schools_modena2025.rst
 
 
 
