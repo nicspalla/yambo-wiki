@@ -1,1 +1,1 @@
-Sphinx>=8.0
+Sphinx>=6.2
