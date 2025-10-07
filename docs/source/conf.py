@@ -28,7 +28,8 @@ html_theme = 'furo'
 html_theme_options = {
     "light_css_variables": {
         "color-brand-primary": "#BF69BB", #pink from yambo website
-        "color-brand-content": "#BF69BB",
+        "color-brand-content": "#BF69BB", #pink from yambo website
+        "color-background-secondary": "471c46",
     },
     #
     "dark_css_variables": {
