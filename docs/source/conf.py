@@ -13,12 +13,16 @@ author = 'Yambo-Team'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = [
+  "sphinx_design",
+  "sphinx.ext.todo",
+]
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-
+# Display todos by setting to True
+todo_include_todos = True
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

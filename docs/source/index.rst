@@ -47,7 +47,7 @@ documentation for details.
 
 .. todo::
 
-   This is a todo block.
+   This is a todo block. It needs the `sphinx.ext.todo` extension.
 
 .. seealso::
 
@@ -73,7 +73,7 @@ Some code blocks follow...
    echo `date` 
    yambo -F y.in
 
-Text can also be enclosed in a dropdown block:
+Text can also be enclosed in a dropdown block. Dropdown elements require the `sphinx_design` extension.
 
 .. dropdown:: a title for the dropdown
 
