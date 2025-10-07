@@ -73,11 +73,18 @@ Some code blocks follow...
    echo `date` 
    yambo -F y.in
 
-Text can also be enclosed in a dropdown block. Dropdown elements require the `sphinx_design` extension.
+Text can also be enclosed in a dropdown block. Dropdown elements require the ``sphinx_design`` extension.
 
 .. dropdown:: a title for the dropdown
 
    Hello!!
+
+.. dropdown:: open for a tip
+   :animate: fade-in-slide-down
+
+   Dropdowns can also contain admonitions!
+   .. tip::
+      Here's a tip.
 
 This is an equation:
 
