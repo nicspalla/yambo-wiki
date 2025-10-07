@@ -57,6 +57,8 @@ Footnote references, like [#]_. Note that footnotes may get rearranged [#]_, e.g
 
 .. [#] Not sure when this happens.
 
+
+
 Input file variables
 ====================
 
