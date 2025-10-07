@@ -21,6 +21,34 @@ documentation for details.
    
    This is a warning block.
 
+.. attention::
+
+   This is an attention block.
+
+.. danger::
+   
+   This is a danger block.
+
+.. important::
+
+   This is an important block.
+
+.. caution::
+
+   This is a caution block.
+
+.. error::
+
+   This is an error block.
+
+.. tip::
+
+   This is a tip block.
+
+.. todo::
+
+   This is a todo block.
+
 .. seealso::
 
    This is a seealso block.
@@ -32,6 +60,8 @@ documentation for details.
 .. admonition:: Example
 
    This is an admonition block named example.
+
+Some code blocks follow...
 
 .. code-block:: bash
 
