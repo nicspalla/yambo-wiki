@@ -73,6 +73,12 @@ Some code blocks follow...
    echo `date` 
    yambo -F y.in
 
+Text can also be enclosed in a dropdown block:
+
+.. dropdown:: a title for the dropdown
+
+   Hello!!
+
 This is an equation:
 
 .. math::
