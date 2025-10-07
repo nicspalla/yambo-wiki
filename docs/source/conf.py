@@ -29,7 +29,7 @@ html_theme_options = {
     "light_css_variables": {
         "color-brand-primary": "#BF69BB", #pink from yambo website
         "color-brand-content": "#BF69BB", #pink from yambo website
-        "color-admonition-title-background-warning": "FF0000",
+        "color-admonition-title--warning": "FF0000",
     },
     #
     "dark_css_variables": {
