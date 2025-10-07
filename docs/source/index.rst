@@ -86,6 +86,11 @@ Text can also be enclosed in a dropdown block. Dropdown elements require the ``s
    .. tip::
       Here's a tip.
 
+.. tip::
+   :collapsible:
+
+   Here's another tip: from sphinx v8.2 blocks are also collapsible...
+
 This is an equation:
 
 .. math::
