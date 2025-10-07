@@ -26,7 +26,12 @@ exclude_patterns = []
 html_theme = 'furo'
 
 html_theme_options = {
-    "css_variables": {
+    "light_css_variables": {
+        "color-brand-primary": "#BF69BB", #pink from yambo website
+        "color-brand-content": "#BF69BB",
+    },
+    #
+    "dark_css_variables": {
         "color-brand-primary": "#BF69BB", #pink from yambo website
         "color-brand-content": "#BF69BB",
     },
