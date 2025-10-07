@@ -64,7 +64,7 @@ Input file variables
 
 This will eventually contain the description of yambo input file variables.
 
-:blue:`A` :red:`typical` :ypurple:`YAMBO` :ypink:`input` :ypeach:`file` :yred:`looks` :yyellow:`like` :ygray:`this`:
+A typical YAMBO input file looks like this:
 
 .. code-block:: console
    :emphasize-lines: 2,7
