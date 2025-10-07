@@ -38,7 +38,7 @@ documentation for details.
    echo `date` 
    yambo -F y.in
 
-.. code-block:: console
+.. code-block::
 
    echo `date` 
    yambo -F y.in
