@@ -6,9 +6,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'yambo-wiki'
-copyright = '2025, Yambo-Team'
-author = 'Yambo-Team'
+project = "yambo-wiki"
+copyright = "2025, Yambo Team"
+author = "Yambo Team"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -28,8 +28,12 @@ todo_include_todos = True
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'furo'
+html_title = "YAMBO WIKI"
 
 html_theme_options = {
+    #
+    "sidebar_hide_name": False,
+    #
     "light_css_variables": {
         "color-brand-primary": "#BF69BB", #pink from yambo website
         "color-brand-content": "#BF69BB", #pink from yambo website
