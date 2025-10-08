@@ -109,3 +109,5 @@ From version 8.2 of ``sphinx`` each admonition directive supports a ``:collapsib
 
    Collapsible directives look a bit ugly tho (at least with Furo...)
 
+A different way to collapse text (and admonitions) is provided by :ref:`dropdowns <ref-sphinx-design-dropdown>`.
+
