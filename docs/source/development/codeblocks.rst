@@ -1,6 +1,6 @@
-================
-Showing code rST
-================
+============
+Showing code
+============
 
 The complete sphinx documentation about this topic is `here <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#showing-code-examples>`__.
 

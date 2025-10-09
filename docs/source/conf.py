@@ -14,12 +14,21 @@ author = "Yambo Team"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+  "myst_parser",
   "sphinx_design",
   "sphinx.ext.todo",
 ]
 
+source_suffix = {
+  '.rst': 'restructuredtext',
+  '.md' : 'markdown',
+}
+
 templates_path = ['_templates']
-exclude_patterns = []
+
+exclude_patterns = [
+  'development/example_files',
+]
 
 # Display todos by setting to True
 todo_include_todos = True

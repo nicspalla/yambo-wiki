@@ -1,6 +1,6 @@
-========
-Math rST
-========
+====
+Math
+====
 
 This is an equation:
 
@@ -22,4 +22,15 @@ For example, Eq :eq:`euler` is Euler's identity, Eq. :eq:`dummyeq` is a dummy eq
    
    Cross-referencing equations using ``:eq:<label>`` only works within the same document.
 
+rST vs MD syntax
+================
 
+.. tab-set::
+
+    .. tab-item:: rST
+
+        .. literalinclude:: example_files/RSTsyntax_math.rst
+
+    .. tab-item:: MD
+
+        .. literalinclude:: example_files/MDsyntax_math.md

@@ -1,6 +1,6 @@
-===============
-Admonitions rST
-===============
+===========
+Admonitions
+===========
 
 These are coloured boxed useful to highlight information.
 
@@ -110,4 +110,17 @@ From version 8.2 of ``sphinx`` each admonition directive supports a ``:collapsib
    Collapsible directives look a bit ugly tho (at least with Furo...)
 
 A different way to collapse text (and admonitions) is provided by :ref:`dropdowns <ref-sphinx-design-dropdown>`.
+
+rST vs MD syntax
+================
+
+.. tab-set::
+
+    .. tab-item:: rST
+
+        .. literalinclude:: example_files/RSTsyntax_admonition.rst
+
+    .. tab-item:: MD
+
+        .. literalinclude:: example_files/MDsyntax_admonition.md
 

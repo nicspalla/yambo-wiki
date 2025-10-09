@@ -3,7 +3,7 @@
 
 .. toctree::
    :hidden:
-   :caption: Schools
+   :caption: Events and schools
 
    index_schools_modena2025.rst
 

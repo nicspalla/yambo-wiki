@@ -1,6 +1,6 @@
-==============================
-``sphinx-design`` elements rST
-==============================
+==========================
+``sphinx-design`` elements
+==========================
 
 These are enabled by the ``sphinx_design`` extension. Find `here <https://sphinx-design.readthedocs.io/en/latest/index.html>`__ the complete documentation.
 
