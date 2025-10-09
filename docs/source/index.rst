@@ -5,13 +5,14 @@
    :hidden:
    :caption: Events and schools
 
-   index_schools_modena2025.rst
+   events_and_schools/Modena2025/index_schools_modena2025.rst
 
 .. uncomment the following toctree line to show in output
 .. toctree::
    :hidden:
    :caption: Development
 
+   development/index_contribute.rst
    development/index_kitchen_sink.rst
 
 
