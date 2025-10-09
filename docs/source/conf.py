@@ -17,6 +17,11 @@ extensions = [
   "myst_parser",
   "sphinx_design",
   "sphinx.ext.todo",
+  "sphinx_togglebutton",
+]
+
+myst_enable_extensions = [
+  "colon_fence",
 ]
 
 source_suffix = {
@@ -54,6 +59,10 @@ html_theme_options = {
     "sidebar_hide_name": False,
     #
     "light_css_variables": {
+        #
+        "admonition-font-size": "1.0rem",
+        "admonition-title-font-size": "1.0rem",
+        #
         "color-brand-primary": "#BF69BB", #pink from yambo website
         "color-brand-content": "#BF69BB", #pink from yambo website
         #"color-brand-visited": "#471C46", #purple from yambo website
@@ -65,6 +74,10 @@ html_theme_options = {
     },
     #
     "dark_css_variables": {
+        #
+        "admonition-font-size": "1.0rem",
+        "admonition-title-font-size": "1.0rem",
+        #
         "color-brand-primary": "#BF69BB", #pink from yambo website
         "color-brand-content": "#BF69BB", #pink from yambo website
         #"color-brand-visited": "#471C46", #purple from yambo website

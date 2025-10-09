@@ -109,7 +109,14 @@ From version 8.2 of ``sphinx`` each admonition directive supports a ``:collapsib
 
    Collapsible directives look a bit ugly tho (at least with Furo...)
 
-A different way to collapse text (and admonitions) is provided by :ref:`dropdowns <ref-sphinx-design-dropdown>`.
+Even if ``:collapsible:`` is the default way to do this, the ``sphinx-togglebutton`` extension (`documentation here <https://sphinx-togglebutton.readthedocs.io/en/latest/index.html#>`__) allows to add ``:class: dropdown`` to the ``admonition``:
+
+.. caution::
+   :class: dropdown, toggle-shown
+
+   This looks way better, but it also requires ``sphinx-design``!
+
+A different way to collapse text is provided by :ref:`dropdowns <ref-sphinx-design-dropdown>`.
 
 rST vs MD syntax
 ================

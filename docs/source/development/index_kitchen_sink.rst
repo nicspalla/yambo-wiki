@@ -2,7 +2,7 @@
 Kitchen Sink
 ============
 
-This is meant to show all elements available from `sphinx <https://www.sphinx-doc.org/en/master/>`__ and its extensions.
+This is meant to show all elements available from `Sphinx <https://www.sphinx-doc.org/en/master/>`__ and its extensions.
 
 For a more complete showcase see `Furo theme website <https://pradyunsg.me/furo/kitchen-sink/>`__.
 
@@ -20,7 +20,10 @@ syntax, but some things in MarkDown (MD) are also shown.
 
 .. toctree::
    :titlesonly:
-   :glob:
 
-   *
+   text_elements.md
+   admonitions.rst
+   codeblocks.rst
+   math.rst
+   sphinx_design.rst
 
