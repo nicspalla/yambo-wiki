@@ -1,21 +1,40 @@
-===============
-Code blocks rST
-===============
+================
+Showing code rST
+================
 
-Some code blocks follow...
+The complete sphinx documentation about this topic is `here <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#showing-code-examples>`__.
 
-.. code-block:: bash
+To insert inline code use double backticks, ``like this``.
 
-   echo `date` 
-   yambo -F y.in
+``code-block``
+--------------
 
-.. code-block::
+If more space is needed, use the ``code-block`` directive:
 
-   echo `date` 
-   yambo -F y.in
+.. code-block:: none
 
-.. code-block:: 
-   :emphasize-lines: 2,7
+   > wget https://media.yambo-code.eu/educational/tutorials/files/hBN.tar.gz
+   [...]
+   > wget https://media.yambo-code.eu/educational/tutorials/files/hBN-2D.tar.gz
+   [...]
+   > ls
+   hBN-2D.tar.gz  hBN.tar.gz
+
+Code can also be highlighted specifying the language, for example
+
+.. code-block:: python
+
+   import numpy as np
+   import matplotlib.pyplot as plt
+
+but this does not always work, so it's better to use ``code-block:: none`` (which does not highlight code).
+
+One useful option is ``:emphasize-lines:``, which can be used to highlight specific lines in the code block:
+
+.. code-block:: none
+   :caption: Caption for this code block (includes a link!).
+   :linenos:
+   :emphasize-lines: 2,8,9,10
 
    [...]
    rim_cut              # [R] Coulomb potential
@@ -29,4 +48,15 @@ Some code blocks follow...
    RandGvec= 5  Ry      # [RIM] Coulomb interaction RS components
    NGsBlkXm= 1  Ry      # [Xm] Response block size
    [...]
+
+``literalinclude``
+------------------
+
+Finally, there is also the ``literalinclude`` directive that takes the code from an external file:
+
+.. literalinclude:: example_files/example_literalinclude.txt
+   :language: none
+   :caption: caption
+   :emphasize-lines: 4
+
 

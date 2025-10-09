@@ -16,6 +16,10 @@ Equations can be numbered and also referenced using the ``:label:`` option.
    
    e^{i\pi} + 1 = 0
 
-Cross-referencing equations using ``:eq:<label>`` (like this :eq:`euler` or :eq:`dummyeq`) only works within the same document.
+For example, Eq :eq:`euler` is Euler's identity, Eq. :eq:`dummyeq` is a dummy equation.
+
+.. attention::
+   
+   Cross-referencing equations using ``:eq:<label>`` only works within the same document.
 
 

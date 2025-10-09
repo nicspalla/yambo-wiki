@@ -1,0 +1,4 @@
+A file containing
+dummy text
+to show 
+the literalinclude directive

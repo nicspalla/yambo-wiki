@@ -24,3 +24,7 @@
 
 Welcome to the Yambo educational page. In this page you will find several informations about how to run Yambo and, more generally, about the methods implemented in the code.
 
+.. todo::
+
+   Add ``sphinx_design`` cards with links to yambo website, git and other stuff.
+
