@@ -70,10 +70,11 @@ html_theme_options = {
         "color-brand-content": "#BF69BB", #pink from yambo website
         #"color-brand-visited": "#471C46", #purple from yambo website
         #
-        "color-background-secondary"  : "#faedf9", #light pink
-        "color-inline-code-background": "#f8f9fb", #light gray
-        "color-highlight-on-target"   : "#f7b5b8", #light peach
-        "color-highlighted-background": "#f7b5b8", #light peach
+        "color-background-secondary"     : "#faedf9", #light pink
+        "color-card-marginals-background": "#faedf9", #light pink
+        "color-inline-code-background"   : "#f8f9fb", #light gray
+        "color-highlight-on-target"      : "#f7b5b8", #light peach
+        "color-highlighted-background"   : "#f7b5b8", #light peach
     },
     #
     "dark_css_variables": {
@@ -85,10 +86,11 @@ html_theme_options = {
         "color-brand-content": "#BF69BB", #pink from yambo website
         #"color-brand-visited": "#471C46", #purple from yambo website
         #
-        "color-background-secondary"  : "#2e122d", #dark purple
-        "color-inline-code-background": "#1f2024", #dark gray
-        "color-highlight-on-target"   : "#a85458", #dark peach
-        "color-highlighted-background": "#a85458", #dark peach
+        "color-background-secondary"     : "#2e122d", #dark purple
+        "color-card-marginals-background": "#2e122d", #dark purple
+        "color-inline-code-background"   : "#1f2024", #dark gray
+        "color-highlight-on-target"      : "#a85458", #dark peach
+        "color-highlighted-background"   : "#a85458", #dark peach
     },
 }
 
