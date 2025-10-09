@@ -1,1 +1,14 @@
+/* ------------------------------- */
+/* Change color of arrow in toggle */
+/* boxes created by togglebutton   */
+/* extension.                      */
 
+[data-theme="light"] .tb-icon {
+  stroke: #5a5c63; /* same as color-foreground-secondary in furo */
+}
+
+[data-theme="dark"] .tb-icon {
+  stroke: #9ca0a5; /* same as color-foreground-secondary in furo */
+}
+
+/* ------------------------------- */

@@ -25,3 +25,7 @@ Markdown 2
 This text is **standard** _Markdown_
 :::
 
+```{dropdown} Dropdown title
+This text is **standard** _Markdown_
+```
+

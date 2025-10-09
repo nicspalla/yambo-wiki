@@ -24,6 +24,9 @@ myst_enable_extensions = [
   "colon_fence",
 ]
 
+togglebutton_hint = " " #Displayed when the toggle is closed
+togglebutton_hint_hide = " " #Displayed when the toggle is open
+
 source_suffix = {
   '.rst': 'restructuredtext',
   '.md' : 'markdown',
