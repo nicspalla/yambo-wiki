@@ -55,11 +55,14 @@ todo_include_todos = True
 ###
 
 html_theme = 'furo'
-html_title = "YAMBO WIKI"
+html_title = "Yambo Wiki"
+
+html_favicon = '_static/yambo_favicon.png'
+html_logo = '_static/logo_main.png'
 
 html_theme_options = {
     #
-    "sidebar_hide_name": False,
+    "sidebar_hide_name": True,
     #
     "light_css_variables": {
         #
