@@ -18,6 +18,7 @@ extensions = [
   "sphinx_design",
   "sphinx.ext.todo",
   "sphinx_togglebutton",
+  "sphinx_new_tab_link",
 ]
 
 myst_enable_extensions = [

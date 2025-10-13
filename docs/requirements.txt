@@ -3,3 +3,4 @@ myst-parser
 furo
 sphinx-design
 sphinx-togglebutton
+sphinx-new-tab-link
