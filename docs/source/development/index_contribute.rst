@@ -37,7 +37,7 @@ To produce the ``html`` files, activate the ``sphinx-wiki`` environment and run 
    (sphinx-wiki) > cd <somewhere-else>/yambo-wiki
    (sphinx-wiki) > ls
    docs  README.md
-   (sphinx-wiki) > sphinx-build -M html docs/source/ ~/Desktop/build
+   (sphinx-wiki) > sphinx-build -b html docs/source/ ~/Desktop/build
 
 .. attention::
 
