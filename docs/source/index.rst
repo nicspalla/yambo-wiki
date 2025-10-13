@@ -18,14 +18,40 @@
 
 .. ########## CONTENT STARTS HERE ##########
 
+==========
+YAMBO WIKI
+==========
 
 .. important::
 
    The new wiki is under construction!
 
-Welcome to the Yambo educational page. In this page you will find several informations about how to run Yambo and, more generally, about the methods implemented in the code.
+Welcome! Here you will find several informations about how to run Yambo and, more generally, about the methods implemented in the code.
+
+.. grid:: 3
+
+   .. grid-item-card::
+      :width: 100%
+      :img-background: ./images_mainpage/card_website.png
+      :img-alt: card_website_yambo-code
+      :link: https://www.yambo-code.eu
+      :text-align: center
+
+   .. grid-item-card::
+      :width: 100%
+      :img-background: ./images_mainpage/card_github.png
+      :img-alt: card_github_yambo-code
+      :link: https://github.com/yambo-code
+      :text-align: center
+
+   .. grid-item-card::
+      :width: 100%
+      :img-background: ./images_mainpage/card_documentation.png
+      :img-alt: card_documentation_yambo-code
+      :link: https://github.com/yambo-code
+      :text-align: center
 
 .. todo::
 
-   Add ``sphinx_design`` cards with links to yambo website, git and other stuff.
+   Add link to documentation when it's ready.
 

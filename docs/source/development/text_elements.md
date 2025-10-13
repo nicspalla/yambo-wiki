@@ -11,12 +11,12 @@ Provide syntax examples for rST and MD
 ```
 
 ````{tab-set}
-```{tab-item} Label1
-Markdown 1
+```{tab-item} rST
+rST syntax
 ```
 
-```{tab-item} Label2
-Markdown 2
+```{tab-item} MD
+MD syntax
 ```
 ````
 
