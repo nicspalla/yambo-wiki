@@ -1,3 +1,4 @@
 ```{note}
+:class: dropdown
 content
 ```
