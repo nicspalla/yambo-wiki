@@ -28,7 +28,7 @@ jobs:
 
     - name: Render the wiki
       run: |
-        sphinx-build -b html docs/source docs/build
+        sphinx-build -M html docs/source docs/build
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v4

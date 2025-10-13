@@ -37,10 +37,17 @@ To produce the ``html`` files, activate the ``sphinx-wiki`` environment and run 
    (sphinx-wiki) > cd <somewhere-else>/yambo-wiki
    (sphinx-wiki) > ls
    docs  README.md
-   (sphinx-wiki) > sphinx-build -b html docs/source/ ~/Desktop/build
+   (sphinx-wiki) > sphinx-build -M html docs/source/ ~/Desktop/build
 
 .. attention::
 
    Redirect the output ``build`` folder (i.e. the one with ``html`` files) **outside** the ``yambo-wiki`` folder (for example to ``~/Desktop``).
+
+.. note::
+
+   In alternative to ``-M`` also ``-b`` can be used. 
+   However when using ``-b`` all the output files are stored in ``build/``, whereas with ``-M`` they are stored in ``build/html/``. 
+   In case you want to change to ``-b`` update also ``publish_dir: <...>`` in ``.github/workflows/sphinx.yml``.
+   See also `this page <https://www.sphinx-doc.org/en/master/man/sphinx-build.html>`__ 
 
 
